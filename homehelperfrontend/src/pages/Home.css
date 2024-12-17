@@ -1,0 +1,86 @@
+/* Home.css */
+body{
+    background: rgb(109, 120, 238);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Logo styles */
+.logo {
+    width: 500px;
+}
+/* Button styles */
+.btn{
+    margin: 10px;
+    padding: 10px 10px;
+    border: none;
+    box-sizing: 20px;
+    border-radius: 5px;
+    background-color: #03178a; /* Default button color */
+    color: rgb(236, 244, 245);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Button hover effect */
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Services section styles */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the service cards */
+    margin: 20px 0;
+}
+
+/* Individual service card styles */
+.service-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: 300px; /* Fixed width for service cards */
+    box-shadow: 0 2px 5px rgba(104, 143, 250, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center; /* Center-align text inside the card */
+}
+
+/* Service card hover effect */
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Testimonials section styles */
+.testimonials {
+    margin: 20px 0;
+}
+
+/* Individual testimonial card styles */
+.testimonial-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    min-width: 300px; /* Minimum width for testimonial cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center; /* Center-align text inside the testimonial card */
+}
+
+/* Testimonial card hover effect */
+.testimonial-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider styles for testimonials */
+.carousel .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust height as needed */
+}

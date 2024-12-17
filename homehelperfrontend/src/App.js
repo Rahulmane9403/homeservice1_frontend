@@ -1,10 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import Footer  from './components/Footer/Footer';
+import HomePage from './pages/HomePage.js';
 
 function App() {
   return (
     <div className="App">
-     <h>helll</h>
+      <Navbar/>
+      <HomePage/>
+      <Footer/>
     </div>
   );
 }
