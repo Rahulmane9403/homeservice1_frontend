@@ -1,36 +1,33 @@
-//import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Footer  from './components/Footer/Footer';
+import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage.js';
 import BookNowPage from './pages/BookNowPage.js';
-//import LoginForm from './pages/LoginForm.js';
-//import LoginUser from './pages/LoginUser.js';
-//import RegisterMaid from './pages/RegisterMaid.js';
-//import RegisterUser from './pages/RegisterUser.js';
-
+// Uncomment and import additional components if needed
+// import LoginForm from './pages/LoginForm.js';
+// import LoginUser from './pages/LoginUser.js';
+// import RegisterMaid from './pages/RegisterMaid.js';
+// import RegisterUser from './pages/RegisterUser.js';
+import Payment from './pages/Payment.js';
 
 function App() {
   return (
-    
-       <>
-      <Navbar /> {/* Include Navbar if needed */}
-      <Routes>
-        
-       
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/book" element={<BookNowPage />} />
-        <Route path="/login" element={<LoginFrom/>} />
-        <Route path="/Register" element ={<RegisterUser/>} />
-        <Route path="/Registerform" element ={<RegisterFromUser/>} />
-        <Route path="/login" element ={<RegisterMaid/>} />
-        <Route path="/Registerform" element ={<RegisterFrom/>} />
-        <Route path="/login" element ={<RegisterMaid/>} />
-       
-      </Routes>
-      <Footer /> 
-    </>
-    
+    <Router>
+      <>
+        <Navbar /> {/* Include Navbar */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/book" element={<BookNowPage />} />
+          <Route Path ="/payment" element ={<Payment />} />
+          {/* Uncomment these routes as needed */}
+          {/* <Route path="/login" element={<LoginForm />} /> */}
+          {/* <Route path="/register" element={<RegisterUser />} /> */}
+          {/* <Route path="/registermaid" element={<RegisterMaid />} /> */}
+        </Routes>
+        <Footer /> 
+      </>
+    </Router>
   );
 }
 
