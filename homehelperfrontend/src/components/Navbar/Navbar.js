@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.jpg'; 
 import './Navbar.css'; // Import your CSS file for styling
-
+import { Link } from 'react-router-dom';
 const Navbar = () => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -17,9 +17,10 @@ const Navbar = () => {
           
             <ul className="navbar-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/services">Services</a></li>
+                <li><a href="#Services">Services</a></li>
                 <li><a href="#about-us">About Us</a></li>
-                <li><a href="/Payment">Book a Maid</a></li>
+                <Link to="/book" >Book</Link>
+                
                 
                 <li 
                     className="dropdown"
@@ -31,16 +32,14 @@ const Navbar = () => {
                     </a>
                     {dropdownVisible && (
                         <ul className="dropdown-menu">
-                            <li><a href="/worker-registration">Worker Registration</a></li>
-                            <li><a href="/user-registration">User Registration</a></li>
-                            <li><a href="/user-login">User Login</a></li>
-                            <li><a href="/admin-login">Admin Login</a></li>
-                            <li><a href="/worker-login">Worker Login</a></li>
+       
+                            <li><a href="/">User Login</a></li>
+                            <li><a href="/">Admin Login</a></li>
+                            <li><Link to="/login" >WorkerLogin</Link></li>
                         </ul>
                     )}
                 </li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/contact"></a></li>
+                <Link to="/contact" >Contact</Link>
             </ul>
         </nav>
     );

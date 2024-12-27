@@ -1,7 +1,7 @@
 /* Reset basic margin and padding */
 * {
     margin: 0;
-    padding: 0;
+    padding-top: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     

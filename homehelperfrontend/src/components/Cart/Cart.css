@@ -1,13 +1,14 @@
 /* Reset basic margin and padding */
 * {
-  margin: 0;
-  padding: 0;
+ 
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
 /* Page container */
 .booknow-container {
+  margin-top: 80px;
+  /* padding-top: 200px; */
   display: flex;
   flex-direction: row; /* Arrange cards in a row */
   flex-wrap: wrap; /* Allow wrapping of cards on smaller screens */

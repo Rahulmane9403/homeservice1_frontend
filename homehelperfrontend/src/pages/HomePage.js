@@ -40,8 +40,9 @@ const Home = () => {
                 </div>
             </div>
               
-            </div>
-            <h2 style={{ textAlign: 'center' }}>Our Services</h2>
+        </div>
+<section id="Services" className="Services">
+<h2 style={{ textAlign: 'center' }}>Our Services</h2>
 <div class="services">
         
     <div class="service-card">
@@ -76,7 +77,7 @@ const Home = () => {
     </div><br></br>
     
         </div>
-   
+        </section>
 
             <div className="testimonials">
                 <h2>What Our Clients Say</h2>

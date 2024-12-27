@@ -4,8 +4,9 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage.js';
 import BookNowPage from './pages/BookNowPage.js';
+import Contact from './pages/contact.js';
 // Uncomment and import additional components if needed
-// import LoginForm from './pages/LoginForm.js';
+import LoginForm from './pages/LoginForm.js';
 // import LoginUser from './pages/LoginUser.js';
 // import RegisterMaid from './pages/RegisterMaid.js';
 // import RegisterUser from './pages/RegisterUser.js';
@@ -20,12 +21,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/book" element={<BookNowPage />} />
           <Route Path ="/payment" element ={<Payment />} />
+          <Route Path ="/contact" element ={<Contact />} />
           {/* Uncomment these routes as needed */}
-          {/* <Route path="/login" element={<LoginForm />} /> */}
+          
           {/* <Route path="/register" element={<RegisterUser />} /> */}
           {/* <Route path="/registermaid" element={<RegisterMaid />} /> */}
         </Routes>
         <Footer /> 
+        
       </>
     </Router>
   );
