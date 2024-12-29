@@ -41,7 +41,7 @@ const Home = () => {
             </div>
               
         </div>
-<section id="Services" className="Services">
+<section id="Services" className="Services"><br></br><br></br>
 <h2 style={{ textAlign: 'center' }}>Our Services</h2>
 <div class="services">
         

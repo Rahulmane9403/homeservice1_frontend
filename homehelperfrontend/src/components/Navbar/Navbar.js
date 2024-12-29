@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.jpg'; 
 import './Navbar.css'; // Import your CSS file for styling
-import { Link } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
 const Navbar = () => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -19,7 +19,7 @@ const Navbar = () => {
                 <li><a href="/">Home</a></li>
                 <li><a href="#Services">Services</a></li>
                 <li><a href="#about-us">About Us</a></li>
-                <Link to="/book" >Book</Link>
+                <NavLink to="/book" >Book</NavLink>
                 
                 
                 <li 
@@ -31,15 +31,13 @@ const Navbar = () => {
                         Login <span className="arrow">&#x25BC;</span>
                     </a>
                     {dropdownVisible && (
-                        <ul className="dropdown-menu">
-       
-                            <li><a href="/">User Login</a></li>
-                            <li><a href="/">Admin Login</a></li>
-                            <li><Link to="/login" >WorkerLogin</Link></li>
-                        </ul>
-                    )}
+                    <ul className="dropdown-menu">
+                        <li><NavLink to="/loginU"> Login</NavLink></li>
+                        <li><NavLink to="/loginA">AdminLogin</NavLink></li>
+                    </ul>
+)}
                 </li>
-                <Link to="/contact" >Contact</Link>
+                <NavLink to="/contact">Contact</NavLink>
             </ul>
         </nav>
     );

@@ -1,0 +1,60 @@
+/* RegistrationForm.css */
+
+body {
+    background-color: #f8f9fa; /* Light background color for the entire page */
+}
+
+.container {
+    margin-top: 50px; /* Space from the top */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    color: #003366; /* Dark blue color for the heading */
+}
+
+h3 {
+    text-align: center; /* Center the subheading */
+    color: #0056b3; /* Medium blue color for the subheading */
+}
+
+button {
+    width: 100%; /* Full width buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    margin-bottom: 10px; /* Space between buttons */
+}
+
+button:hover {
+    opacity: 0.9; /* Slightly transparent on hover */
+}
+
+.form-control {
+    border-radius: 5px; /* Rounded corners for input fields */
+    border: 1px solid #007bff; /* Blue border */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for border color and shadow */
+}
+
+.form-control:focus {
+    border-color: #0056b3; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Add shadow on focus */
+}
+
+label {
+    font-weight: bold; /* Bold labels */
+}
+
+button[type="submit"] {
+    background-color: #007bff; /* Primary blue color */
+    border: none; /* Remove border */
+    color: white; /* White text color */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px; /* Reduce margin on smaller screens */
+    }
+}

@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import validator from 'validator';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './LoginForm.css'; 
 import { Link } from 'react-router-dom';
-function Login() {
+
+function LoginU() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validationMessage, setValidationMessage] = useState("");
@@ -44,43 +45,45 @@ function Login() {
     <Container>
       <Row className="justify-content-md-center">
         <Col md="4">
-          <h2>Login</h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
+          <div className="card">
+            <h2>Login</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicEmail"><br></br><br></br>
+                <Form.Label>Email address</Form.Label><br></br><br></br>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group><br></br>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  validatePassword(e.target.value);
-                }}
-              />
-              <p style={{ color: messageColor }}>{validationMessage}</p>
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form>
-          <p className="mt-3">
-            Don't have an account? <a href="/register">Register here</a>
-          </p>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label><br></br><br></br>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    validatePassword(e.target.value);
+                  }}
+                /><br></br>
+                <p className="validation-message" style={{ color: messageColor }}>{validationMessage}</p>
+              </Form.Group>
+              <br></br><br></br>
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+            </Form><br></br>
+            <p className="mt-3">
+              Don't have an account? <li><Link to="/RegistrationForm">Register Here</Link></li>
+            </p>
+          </div>
         </Col>
       </Row>
     </Container>
   );
 }
 
-export default Login;
+export default LoginU;

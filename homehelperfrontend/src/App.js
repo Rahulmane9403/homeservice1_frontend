@@ -4,11 +4,13 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage.js';
 import BookNowPage from './pages/BookNowPage.js';
-import Contact from './pages/contact.js';
+import Contact from './pages/ContactForm';
 // Uncomment and import additional components if needed
-import LoginForm from './pages/LoginForm.js';
+// import Login from './pages/LoginForm.js';
+import LoginA from './pages/LoginForm_A.js';
+import LoginU from './pages/LoginForm_U .js';
 // import LoginUser from './pages/LoginUser.js';
-// import RegisterMaid from './pages/RegisterMaid.js';
+import RegistrationForm from './pages/RegistrationForm.js';
 // import RegisterUser from './pages/RegisterUser.js';
 import Payment from './pages/Payment.js';
 
@@ -21,10 +23,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/book" element={<BookNowPage />} />
           <Route Path ="/payment" element ={<Payment />} />
-          <Route Path ="/contact" element ={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
+         
+          <Route path="/loginA" element={<LoginA />} />
+          <Route path="/loginU" element={<LoginU />} />
+          {/* <Route path="/login" element={<Login />} /> */}
           {/* Uncomment these routes as needed */}
           
-          {/* <Route path="/register" element={<RegisterUser />} /> */}
+          <Route path="/RegistrationForm" element={<RegistrationForm />} />
           {/* <Route path="/registermaid" element={<RegisterMaid />} /> */}
         </Routes>
         <Footer /> 
