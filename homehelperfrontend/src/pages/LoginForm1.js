@@ -1,10 +1,7 @@
-
 import React, { useState } from 'react';
 import validator from 'validator';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { Link } from 'react-router-dom';
-import './LoginForm.css';
 
 function Login() {
   const [email, setEmail] = useState('');

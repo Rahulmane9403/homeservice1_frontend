@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import './WorkerRegistration.css';
+import './WorkerRegistrationForm.css';
 
 
 function WorkerRegistrationForm() {
@@ -17,52 +17,37 @@ function WorkerRegistrationForm() {
     identityProof: null,
     identityNumberType: '',
     identityNumber: '',
-    gender: ''
+    gender: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFileChange = (e) => {
     const { name } = e.target;
     const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      [name]: file
-    });
+    setFormData({ ...formData, [name]: file });
   };
 
   const handleSkillsChange = (e) => {
-    const options = e.target.options;
-    const selectedSkills = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        selectedSkills.push(options[i].value);
-      }
-    }
-    setFormData({
-      ...formData,
-      skills: selectedSkills
-    });
+    const selectedSkills = Array.from(e.target.selectedOptions, option => option.value);
+    setFormData({ ...formData, skills: selectedSkills });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log(formData);
   };
 
   return (
-    <Container>
+    <Container >
       <Row className="justify-content-md-center">
         <Col md="6">
           <h2>Worker Registration</h2>
           <Form onSubmit={handleSubmit}>
+            {/* Name Field */}
             <Form.Group controlId="formName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -74,15 +59,13 @@ function WorkerRegistrationForm() {
               />
             </Form.Group>
 
+            {/* Photo Upload */}
             <Form.Group controlId="formPhoto">
               <Form.Label>Photo</Form.Label>
-              <Form.Control
-                type="file"
-                name="photo"
-                onChange={handleFileChange}
-              />
+              <Form.Control type="file" name="photo" onChange={handleFileChange} />
             </Form.Group>
 
+            {/* Experience Field */}
             <Form.Group controlId="formExperience">
               <Form.Label>Experience</Form.Label>
               <Form.Control
@@ -103,28 +86,27 @@ function WorkerRegistrationForm() {
               />
             </Form.Group>
 
-            <Form>
-      <Form.Group controlId="formSkills">
-        <Form.Label>Skills</Form.Label>
-        <Form.Control
-          as="select"
-          multiple
-          name="skills"
-          value={formData.skills}
-          onChange={handleSkillsChange}
-        >
-          <option value="Cleaning">Cleaning</option>
-          <option value="Cooking">Cooking</option>
-          <option value="Gardening">Gardening</option>
-          <option value="Babysitting">Babysitting</option>
-          <option value="Patient Care">Patient Care</option>
-          <option value="Pet Care">Pet Care</option>
-        </Form.Control>
-      </Form.Group>
+            {/* Skills Field */}
+            <Form.Group controlId="formSkills">
+              <Form.Label>Skills</Form.Label>
+              <Form.Control
+                as="select"
+                multiple
+                name="skills"
+                value={formData.skills}
+                onChange={handleSkillsChange}
+              >
+                <option value="Cleaning">Cleaning</option>
+                <option value="Cooking">Cooking</option>
+                <option value="Gardening">Gardening</option>
+                <option value="Babysitting">Babysitting</option>
+                <option value="Patient Care">Patient Care</option>
+                <option value="Pet Care">Pet Care</option>
+              </Form.Control>
+              <p>Selected Skills: {formData.skills.join(', ')}</p>
+            </Form.Group>
 
-      <p>Selected Skills: {formData.skills.join(", ")}</p>
-    </Form>
-
+            {/* Languages Field */}
             <Form.Group controlId="formLanguages">
               <Form.Label>Languages</Form.Label>
               <Form.Control
@@ -150,6 +132,7 @@ function WorkerRegistrationForm() {
               )}
             </Form.Group>
 
+            {/* Availability Field */}
             <Form.Group controlId="formAvailability">
               <Form.Label>Availability</Form.Label>
               <Form.Control
@@ -164,6 +147,7 @@ function WorkerRegistrationForm() {
               </Form.Control>
             </Form.Group>
 
+            {/* Mobile Number Field */}
             <Form.Group controlId="formMobile">
               <Form.Label>Mobile</Form.Label>
               <Form.Control
@@ -175,6 +159,7 @@ function WorkerRegistrationForm() {
               />
             </Form.Group>
 
+            {/* Identity Proof Field */}
             <Form.Group controlId="formIdentityProof">
               <Form.Label>Identity Proof</Form.Label>
               <Form.Control
@@ -184,6 +169,7 @@ function WorkerRegistrationForm() {
               />
             </Form.Group>
 
+            {/* Identity Number Field */}
             <Form.Group controlId="formIdentityNumber">
               <Form.Label>Identity Number</Form.Label>
               <Form.Control
@@ -205,6 +191,7 @@ function WorkerRegistrationForm() {
               />
             </Form.Group>
 
+            {/* Gender Field */}
             <Form.Group controlId="formGender">
               <Form.Label>Gender</Form.Label>
               <Form.Control
@@ -219,6 +206,7 @@ function WorkerRegistrationForm() {
               </Form.Control>
             </Form.Group>
 
+            {/* Submit Button */}
             <Button variant="primary" type="submit">
               Register
             </Button>

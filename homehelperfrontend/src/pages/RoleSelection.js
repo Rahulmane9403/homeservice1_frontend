@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+
 function RoleSelection() {
   const navigate = useNavigate();
 
@@ -16,11 +17,52 @@ function RoleSelection() {
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Col md="6">
+        <Col md="6" className="text-center">
           <h2>Select Role</h2>
           <p>Choose your role:</p>
-          <Button variant="primary" className="me-2" onClick={() => handleRoleSelection('User')}>User</Button>
-          <Button variant="secondary" onClick={() => handleRoleSelection('Worker')}>Worker</Button>
+          <div className="d-flex justify-content-center">
+            <Button
+              variant="outline-primary"
+              className="me-3 p-3"
+              onClick={() => handleRoleSelection('User')}
+              style={{
+                backgroundColor: '#007bff',
+                color: '#fff',
+                fontSize: '18px',
+                padding: '10px 20px',
+                width: '120px',
+                transition: 'transform 0.2s ease-in-out',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+              }}
+            >
+              User
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => handleRoleSelection('Worker')}
+              style={{
+                backgroundColor: '#6c757d',
+                color: '#fff',
+                fontSize: '18px',
+                padding: '10px 20px',
+                width: '120px',
+                transition: 'transform 0.2s ease-in-out',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+              }}
+            >
+              Worker
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>
