@@ -1,6 +1,7 @@
 import React from "react";
 import "./Cart.css";
-import images from "../../assets/nurse.jpg"
+//import images from "../../assets/nurse.jpg"
+import images from "../../assets/MaidCart.jpg"
 
 function MaidCard() {
   const maid = {

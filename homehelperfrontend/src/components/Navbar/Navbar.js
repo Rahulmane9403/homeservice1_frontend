@@ -13,12 +13,12 @@ const Navbar = () => {
         <nav className="navbar">
                 <img src={logo} alt="Home Helper Logo" style={{ width: '55px' }} />
                 {/* <img src={logo} alt="Logo" className="navbar-logo" /> */}
-                <h1>Online Maid Booking</h1>
+                <h1>Home Helper</h1>
           
             <ul className="navbar-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="#Services">Services</a></li>
-                <li><a href="#about-us">About Us</a></li>
+            
                 <NavLink to="/book" >Book</NavLink>
                 
                 
@@ -37,6 +37,7 @@ const Navbar = () => {
                     </ul>
 )}
                 </li>
+                <li><a href="#about-us">About Us</a></li>
                 <NavLink to="/contact">Contact</NavLink>
             </ul>
         </nav>
