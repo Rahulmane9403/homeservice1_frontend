@@ -1,20 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-import images from "../../assets/nurse.jpg"
+import images from "../../assets/maidcart.jpg";
 
 function MaidCard() {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
   const maid = {
-    //photo: "https://via.placeholder.com/150",  // Dummy image link 
     photo: `${images}`,
     name: "Priya",
     service: "Cleaning",
     experience: 5,
     location: "Delhi",
-    price: 250
+    price: 250,
+  };
+
+  const handleBookNow = () => {
+    navigate("/booking"); // Redirect to BookingPage
   };
 
   return (
-
     <div className="maid-card">
       <img src={maid.photo} alt={`${maid.name}`} className="maid-photo" />
       <div className="maid-details">
@@ -24,7 +29,7 @@ function MaidCard() {
         <p><strong>Location:</strong> {maid.location}</p>
         <p><strong>Price:</strong> ₹{maid.price} / hour</p>
       </div>
-      <button className="maid-book-btn" onClick={() => alert(`Booking ${maid.name}`)}>
+      <button className="maid-book-btn" onClick={handleBookNow}>
         Book Now
       </button>
     </div>

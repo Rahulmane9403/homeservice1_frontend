@@ -9,6 +9,7 @@ import serviceImage from '../assets/serviceImage.jpg';
 import nurse from '../assets/nurse.jpg';
 import PetCare from '../assets/PetCare.jpg';
 
+import { useNavigate } from "react-router-dom";
 
 
 import hero3 from '../assets/hero3.jpg';
@@ -27,7 +28,12 @@ const Home = () => {
 
     const handleNext = () => setIndex((index + 1) % testimonials.length);
     const handlePrev = () => setIndex((index - 1 + testimonials.length) % testimonials.length);
+    const navigate = useNavigate();
 
+    const handleNavigate = () => {
+      navigate("/bookingPage");
+    };
+  
 
 
     return (
@@ -36,8 +42,8 @@ const Home = () => {
             <div className="hero-section" style={{ backgroundImage: `url(${hero3})` }}>
                 <div className="hero-content">
                     <h1>A clean home is a sanctuary for the soul.</h1>
-                    <button className="hero-button">Book Now</button>
-                </div>
+                    <button className="hero-button" onClick={handleNavigate}>  Book Now </button>   
+                 </div>
             </div>
               
         </div>

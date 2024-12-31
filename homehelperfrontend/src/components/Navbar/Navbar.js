@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className="navbar">
                 <img src={logo} alt="Home Helper Logo" style={{ width: '55px' }} />
                 {/* <img src={logo} alt="Logo" className="navbar-logo" /> */}
-                <h1>Online Maid Booking</h1>
+                <h1>HomeHelper</h1>
           
             <ul className="navbar-links">
                 <li><a href="/">Home</a></li>

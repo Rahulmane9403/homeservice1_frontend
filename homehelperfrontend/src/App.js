@@ -18,6 +18,7 @@ import RegistrationForm from './pages/UserRegistrationForm.js';
 
 // import RegisterUser from './pages/RegisterUser.js';
 import Payment from './pages/Payment.js';
+import BookingPage from './pages/BookingPage.js';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/book" element={<BookNowPage />} />
           <Route Path ="/payment" element ={<Payment />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/bookingPage" element={<BookingPage />} />
+          <Route path="/register" element={<RegistrationForm />} />
          
           {/* <Route path="/loginA" element={<LoginA />} /> */}
           <Route path="/loginU" element={<LoginU />} />
@@ -41,8 +44,7 @@ function App() {
           <Route path="/workerRegistrationForm" element={<WorkerRegistrationForm />} />
           <Route path="/RegistrationForm" element={<RegistrationForm />} />
           <Route path="/worker-register" element={<WorkerRegistrationForm />} />
-
-          
+          <Route path="/booking" element={<BookingPage />} />          
           {/* <Route path="/RegistrationForm" element={<RegistrationForm />} />/ */}
           {/* <Route path="/registermaid" element={<RegisterMaid />} /> */}
         </Routes>
