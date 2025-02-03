@@ -4,7 +4,7 @@
     padding-top: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    
+    /* padding-top: 40px; */
 }
 
 /* Page container */
@@ -16,7 +16,7 @@
     /*flex-wrap: rap; /* Prevent wrapping */
     justify-content: center; /* Align cards to the start */
     gap: 20px; /* Space between cards */
-    padding: 20px;
+    padding-top: 120px;
     min-height: 100vh;
     background-color: #0c487c; /* Light gray background */
     /*min-height: 40vh; /* Full-page height */
@@ -27,6 +27,7 @@
 
 /* Maid Card container styling */
 .maid-card {
+    
     background-color: white; /* White background */
     border: 1px solid #ddd; /* Light border */
     border-radius: 8px;
@@ -52,6 +53,7 @@
 }
 
 .maid-card-description {
+    
     font-size: 0.9rem;
     color: #555;
     margin-bottom: 15px;

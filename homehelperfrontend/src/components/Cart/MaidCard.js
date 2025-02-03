@@ -1,7 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-import images from "../../assets/maidcart.jpg";
+
+// import images from "../../assets/maidcart.jpg";
+
+//import images from "../../assets/nurse.jpg"
+import images from "../../assets/MaidCart.jpg"
+
 
 function MaidCard() {
   const navigate = useNavigate(); // Initialize the useNavigate hook

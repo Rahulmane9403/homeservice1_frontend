@@ -1,6 +1,5 @@
- import React, { useState } from 'react';
-// import logo from '../assets/logo.jpg'; 
-
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import Cleaning from '../assets/Cleaning.jpg';
 import Cooking from '../assets/Cooking.jpg';
@@ -9,13 +8,13 @@ import serviceImage from '../assets/serviceImage.jpg';
 import nurse from '../assets/nurse.jpg';
 import PetCare from '../assets/PetCare.jpg';
 
-import { useNavigate } from "react-router-dom";
-
-
 import hero3 from '../assets/hero3.jpg';
-import './Home.css'; // You can create a CSS file for styling
+import './Home.css'; // Ensure you create a CSS file for styling
 
-const Home = () => {
+const HomePage = () => {
+    const navigate = useNavigate();
+
+    // Testimonials Data
     const testimonials = [
         { name: "Sarah J.", message: "Home Helper has transformed my home! The cleaning service is top-notch and very reliable." },
         { name: "Mark T.", message: "The babysitting service was a lifesaver for our family. Our kids loved their sitter!" },
@@ -24,95 +23,77 @@ const Home = () => {
         { name: "Lisa M.", message: "The cooking service has made my life so much easier. Delicious meals every day!" }
     ];
 
-    const [index, setIndex] = useState(0);
+    // Services Data
+    const services = [
+        { id: "cleaning", img: Cleaning, title: "Cleaning", desc: "Professional cleaning services for your home or office, ensuring a spotless environment." },
+        { id: "cooking", img: Cooking, title: "Cooking", desc: "Delicious home-cooked meals prepared by experienced chefs tailored to your dietary needs." },
+        { id: "gardening", img: Gardening, title: "Gardening", desc: "Expert gardening services to maintain and beautify your outdoor spaces." },
+        { id: "babysitting", img: serviceImage, title: "Babysitting", desc: "Reliable babysitting services with trained caregivers to ensure your child's safety and happiness." },
+        { id: "patient-care", img: nurse, title: "Patient Care", desc: "Compassionate patient care services for the elderly or those in need of assistance at home." },
+        { id: "pet-care", img: PetCare, title: "Pet Care", desc: "Professional pet care services including walking, grooming, and sitting for your furry friends." }
+    ];
 
+    // State for testimonials
+    const [index, setIndex] = useState(0);
     const handleNext = () => setIndex((index + 1) % testimonials.length);
     const handlePrev = () => setIndex((index - 1 + testimonials.length) % testimonials.length);
-    const navigate = useNavigate();
-
-    const handleNavigate = () => {
-      navigate("/bookingPage");
-    };
-  
-
 
     return (
-        <div>
-            <div>
+        <div className="home-page">
+            {/* Hero Section */}
             <div className="hero-section" style={{ backgroundImage: `url(${hero3})` }}>
                 <div className="hero-content">
                     <h1>A clean home is a sanctuary for the soul.</h1>
-                    <button className="hero-button" onClick={handleNavigate}>  Book Now </button>   
-                 </div>
+                    <button className="hero-button" onClick={() => navigate("/bookingPage")}>Book Now</button>
+                </div>
             </div>
-              
-        </div>
-<section id="Services" className="Services"><br></br><br></br>
-<h2 style={{ textAlign: 'center' }}>Our Services</h2>
-<div class="services">
-        
-    <div class="service-card">
-        <img src={Cleaning} alt="Services" />
-        <h3>Cleaning</h3>
-        <p>Professional cleaning services for your home or office, ensuring a spotless environment.</p>
-    </div>
-    <div class="service-card">
-        <img src={Cooking} alt="Services" style={{ width: '300px' }} />
-        <h3>Cooking</h3>
-        <p>Delicious home-cooked meals prepared by experienced chefs tailored to your dietary needs.</p>
-    </div>
-    <div class="service-card">
-        <img src={Gardening} alt="Services" />
-        <h3>Gardening</h3>
-        <p>Expert gardening services to maintain and beautify your outdoor spaces.</p>
-    </div>
-    <div class="service-card">
-        <img src={serviceImage} alt="Services" />
-        <h3>Babysitting</h3>
-        <p>Reliable babysitting services with trained caregivers to ensure your child's safety and happiness.</p>
-    </div>
-    <div class="service-card">
-        <img src={nurse} alt="Services" />
-        <h3>Patient Care</h3>
-        <p>Compassionate patient care services for the elderly or those in need of assistance at home.</p>
-    </div>
-    <div class="service-card">
-        <img src={PetCare} alt="Services" />
-        <h3>Pet Care</h3>
-        <p>Professional pet care services including walking, grooming, and sitting for your furry friends.</p>
-    </div><br></br>
-    
-        </div>
-        </section>
 
-            <div className="testimonials">
+            {/* Services Section */}
+            <section id="Services" className="services-section"><br></br><br></br><br></br>
+                <h2 style={{ textAlign: 'center', color: '#fff' }}>Our Services</h2>
+                <div className="services-container">
+                    {services.map((service) => (
+                        <div className="service-card" key={service.id}>
+                            <img 
+                                src={service.img} 
+                                alt={service.title} 
+                                className="service-image"
+                            />
+                            <h3>{service.title}</h3>
+                            <p>{service.desc}</p>
+                            <button
+                                className="explore-button"
+                                onClick={() => navigate(`/${service.id}`)}>Explore</button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Testimonials Section */}
+            <section className="testimonials">
+            <br></br><br></br>
                 <h2>What Our Clients Say</h2>
                 <div className="testimonial-card">
                     <strong>{testimonials[index].name}</strong>
                     <p>{testimonials[index].message}</p>
                 </div>
                 <div className="navigation-buttons">
-                    <button onClick={handlePrev}>Previous</button>
-                    <button onClick={handleNext}>Next</button>
-                </div>
-            </div>
-        
-         <div>
-         <section id="about-us" className="about-us">
-         <br /><br /> 
-                     <h2 style={{ textAlign: 'center' }}>About Us</h2>
-                     <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
-                         Welcome to Home Helper, your trusted partner in maintaining a happy and organized household. 
-                         From professional cleaning to compassionate patient care, our services are designed to meet your daily needs with reliability and excellence.
-                         Experience a stress-free life with our tailored solutions for every home.
-                     </p><br />   <br /> <br /> 
-         </section>
-         </div>
-         </div>
-        
-);
+    <button onClick={handlePrev} className="nav-btn">«</button>
+    <button onClick={handleNext} className="nav-btn">»</button>
+</div>
+            </section>
 
-
-
+            {/* About Us Section */}
+            <section id="about-us" className="about-us">
+            <br></br><br></br><h2 style={{ textAlign: 'center' }}>About Us</h2>
+                <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
+                    Welcome to Home Helper, your trusted partner in maintaining a happy and organized household. 
+                    From professional cleaning to compassionate patient care, our services are designed to meet your daily needs with reliability and excellence.
+                    Experience a stress-free life with our tailored solutions for every home.
+                </p><br></br><br></br><br></br>
+            </section>
+        </div>
+    );
 };
-export default Home;
+
+export default HomePage;

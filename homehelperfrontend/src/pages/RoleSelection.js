@@ -26,12 +26,13 @@ function RoleSelection() {
               className="me-3 p-3"
               onClick={() => handleRoleSelection('User')}
               style={{
-                backgroundColor: '#007bff',
+                backgroundColor: '#4578',
                 color: '#fff',
                 fontSize: '18px',
-                padding: '10px 20px',
+                padding: '30px 30px',
                 width: '120px',
                 transition: 'transform 0.2s ease-in-out',
+                
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = 'scale(1.1)';
@@ -42,16 +43,20 @@ function RoleSelection() {
             >
               User
             </Button>
+            
+            
             <Button
               variant="outline-secondary"
+		className="e-3 p-3"
               onClick={() => handleRoleSelection('Worker')}
               style={{
-                backgroundColor: '#6c757d',
+                backgroundColor: '#007bff',
                 color: '#fff',
                 fontSize: '18px',
-                padding: '10px 20px',
+                padding: '30px 30px',
                 width: '120px',
                 transition: 'transform 0.2s ease-in-out',
+                
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = 'scale(1.1)';
