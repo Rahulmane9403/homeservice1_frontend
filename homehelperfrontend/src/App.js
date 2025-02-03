@@ -5,24 +5,17 @@ import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage.js';
 import BookNowPage from './pages/BookNowPage.js';
 import Contact from './pages/ContactForm';
-// Uncomment and import additional components if needed
 import LoginForm from './pages/LoginForm1.js';
 import UserRegistrationForm from './pages/UserRegistrationForm.js';
 import WorkerRegistrationForm from './pages/WorkerRegistrationForm.js';
 import WorkerProfilePage from './pages/WorkerProfilePage.js';
 import RoleSelection from './pages/RoleSelection.js';
-// import LoginA from './pages/LoginForm_A.js';
 import LoginU from './pages/LoginForm_U .js';
 import RegistrationForm from './pages/UserRegistrationForm.js';
-// import LoginUser from './pages/LoginUser.js';
-
-// import RegisterUser from './pages/RegisterUser.js';
-// import RegisterUser from './pages/RegisterUser.js';
 import Payment from './pages/Payment.js';
 import BookingPage from './pages/BookingPage.js';
 
-
-
+// Import additional pages
 import CleaningPage from "./pages/CleaningPage";
 import CookingPage from "./pages/CookingPage";
 import GardeningPage from "./pages/GardeningPage";
@@ -30,9 +23,10 @@ import BabysittingPage from "./pages/BabysittingPage";
 import PatientCarePage from "./pages/PatientCarePage";
 import PetCarePage from "./pages/PetCarePage";
 
-
-
-
+// Import components for worker, booking, and feedback lists
+import WorkerList from './components/API_Calls_in_React_Components/WorkerList';
+import BookingList from './components/API_Calls_in_React_Components/BookingList';
+import FeedbackList from './components/API_Calls_in_React_Components/FeedbackList';
 
 function WorkerProfileWrapper() {
   const location = useLocation();
@@ -45,44 +39,42 @@ function App() {
       <>
         <Navbar /> {/* Include Navbar */}
         <Routes>
+          {/* Existing routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/book" element={<BookNowPage />} />
-          <Route Path ="/payment" element ={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/bookingPage" element={<BookingPage />} />
           <Route path="/register" element={<RegistrationForm />} />
-         
-          {/* <Route path="/loginA" element={<LoginA />} /> */}
           <Route path="/loginU" element={<LoginU />} />
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* Uncomment these routes as needed */}
           <Route path="/worker-profile" element={<WorkerProfileWrapper />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/roleSelection" element={<RoleSelection />} />
           <Route path="/userRegistrationForm" element={<UserRegistrationForm />} />
           <Route path="/workerRegistrationForm" element={<WorkerRegistrationForm />} />
-          <Route path="/RegistrationForm" element={<RegistrationForm />} />
           <Route path="/worker-register" element={<WorkerRegistrationForm />} />
           <Route path="/booking" element={<BookingPage />} />          
-          {/* <Route path="/RegistrationForm" element={<RegistrationForm />} />/ */}
-          {/* <Route path="/registermaid" element={<RegisterMaid />} /> */}
+          
+          {/* New routes for worker, booking, and feedback */}
+          <Route path="/workers" element={<WorkerList />} />
+          <Route path="/bookings" element={<BookingList />} />
+          <Route path="/feedbacks" element={<FeedbackList />} />
+          <Route path="/payments" element={<Payment />} />
+          <Route path="/supports" element={<Contact />} />
+          <Route path="/system-administration" element={<SystemAdministrationPage />}/>
 
-
-        <Route path="/cleaning" element={<CleaningPage />} />
-        <Route path="/cooking" element={<CookingPage />} />
-        <Route path="/gardening" element={<GardeningPage />} />
-        <Route path="/babysitting" element={<BabysittingPage />} />
-        <Route path="/patient-care" element={<PatientCarePage />} />
-        <Route path="/pet-care" element={<PetCarePage />} />
-
-
-
+          {/* Additional pages */}
+          <Route path="/cleaning" element={<CleaningPage />} />
+          <Route path="/cooking" element={<CookingPage />} />
+          <Route path="/gardening" element={<GardeningPage />} />
+          <Route path="/babysitting" element={<BabysittingPage />} />
+          <Route path="/patient-care" element={<PatientCarePage />} />
+          <Route path="/pet-care" element={<PetCarePage />} />
         </Routes>
-        <Footer /> 
-        
+        <Footer /> {/* Include Footer */}
       </>
     </Router>
   );
 }
 
-export default App;
+export default App;
