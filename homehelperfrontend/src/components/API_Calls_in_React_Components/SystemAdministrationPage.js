@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSystemAdministrations, createSystemAdministration } from './SystemAdministrationService';
+import { getSystemAdministrations, createSystemAdministration } from './components/services/systemAdministrationService';
 
 const SystemAdministrationPage = () => {
   const [admins, setAdmins] = useState([]);

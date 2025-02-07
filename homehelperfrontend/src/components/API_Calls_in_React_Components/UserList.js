@@ -15,6 +15,7 @@ const UserList = () => {
         } catch (error) {
             console.error("Error fetching users:", error);
         }
+        
     };
 
     const handleDelete = async (id) => {

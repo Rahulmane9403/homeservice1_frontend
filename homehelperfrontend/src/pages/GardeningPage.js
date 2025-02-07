@@ -10,9 +10,8 @@ import gardener4 from '../assets/gardener4.jpg';
 import gardener5 from '../assets/gardener5.jpg';
 
 const GardeningPage = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
-    // Update the workers array to use the imported images
     const workers = [
         { name: "Jake Wilson", gender: "Male", experience: "8 years", location: "Delhi", salary: "₹250 / hour", img: gardener1 },
         { name: "Sophia Green", gender: "Female", experience: "5 years", location: "Mumbai", salary: "₹200 / hour", img: gardener2 },
@@ -21,12 +20,21 @@ const GardeningPage = () => {
         { name: "Henry Clark", gender: "Male", experience: "7 years", location: "Kolkata", salary: "₹280 / hour", img: gardener5 }
     ];
 
+    const handleWorkerClick = (workerName) => {
+        navigate('/bookingPage', {
+            state: {
+                selectedService: "Gardening",
+                selectedWorker: workerName
+            }
+        });
+    };
+
     return (
         <section className="service-page">
             <h2>Available Gardeners</h2>
             <div className="worker-list">
                 {workers.map((worker, index) => (
-                    <div className="worker-card" key={index}>
+                    <div className="worker-card" key={index} onClick={() => handleWorkerClick(worker.name)}>
                         <img src={worker.img} alt={worker.name} />
                         <h3>{worker.name}</h3>
                         <p>Gender: {worker.gender}</p>
@@ -34,12 +42,10 @@ const GardeningPage = () => {
                     </div>
                 ))}
             </div>
-
-            {/* BOOK NOW Button */}
             <div className="book-now-container">
-                <button className="book-now-button" onClick={() => navigate('/booking')}>
+                <button className="book-now-button" onClick={() => navigate('/bookingPage')}>
                     Book Now
-                </button><br /><br /><br />
+                </button>
             </div>
         </section>
     );

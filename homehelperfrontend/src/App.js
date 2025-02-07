@@ -11,7 +11,6 @@ import WorkerRegistrationForm from './pages/WorkerRegistrationForm.js';
 import WorkerProfilePage from './pages/WorkerProfilePage.js';
 import RoleSelection from './pages/RoleSelection.js';
 import LoginU from './pages/LoginForm_U .js';
-import RegistrationForm from './pages/UserRegistrationForm.js';
 import Payment from './pages/Payment.js';
 import BookingPage from './pages/BookingPage.js';
 
@@ -22,6 +21,7 @@ import GardeningPage from "./pages/GardeningPage";
 import BabysittingPage from "./pages/BabysittingPage";
 import PatientCarePage from "./pages/PatientCarePage";
 import PetCarePage from "./pages/PetCarePage";
+import SuccessPage from "./pages/SuccessPage";
 
 // Import components for worker, booking, and feedback lists
 import WorkerList from './components/API_Calls_in_React_Components/WorkerList';
@@ -45,23 +45,28 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/bookingPage" element={<BookingPage />} />
-          <Route path="/register" element={<RegistrationForm />} />
-          <Route path="/loginU" element={<LoginU />} />
-          <Route path="/worker-profile" element={<WorkerProfileWrapper />} />
+          <Route path="/success" element={<SuccessPage />} />
+
+          {/* Login and Register */}
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/roleSelection" element={<RoleSelection />} />
-          <Route path="/userRegistrationForm" element={<UserRegistrationForm />} />
-          <Route path="/workerRegistrationForm" element={<WorkerRegistrationForm />} />
-          <Route path="/worker-register" element={<WorkerRegistrationForm />} />
-          <Route path="/booking" element={<BookingPage />} />          
+          <Route path="/loginU" element={<LoginU />} />
           
+          {/* Role selection (replaced /register with /roleSelection) */}
+          <Route path="/register" element={<RoleSelection />} />
+
+          {/* Worker Profile */}
+          <Route path="/worker-profile" element={<WorkerProfileWrapper />} />
+
+          {/* Worker registration and user registration forms */}
+          <Route path="/user-registration" element={<UserRegistrationForm />} />
+          <Route path="/worker-registration" element={<WorkerRegistrationForm />} />
+
           {/* New routes for worker, booking, and feedback */}
           <Route path="/workers" element={<WorkerList />} />
           <Route path="/bookings" element={<BookingList />} />
           <Route path="/feedbacks" element={<FeedbackList />} />
           <Route path="/payments" element={<Payment />} />
           <Route path="/supports" element={<Contact />} />
-          <Route path="/system-administration" element={<SystemAdministrationPage />}/>
 
           {/* Additional pages */}
           <Route path="/cleaning" element={<CleaningPage />} />

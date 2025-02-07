@@ -1,175 +1,127 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./BookingPage.css";
 
 const BookingPage = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState("");
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    phone: "",
-    description: "",
-  });
-  const [errors, setErrors] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const [selectedService, setSelectedService] = useState(location.state?.selectedService || "");
+  const [selectedWorker, setSelectedWorker] = useState(location.state?.selectedWorker || "");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("Pune");
-  const [selectedService, setSelectedService] = useState("Cleaning");
-  const [selectedWorker, setSelectedWorker] = useState("Helper 1");
+  const [formData, setFormData] = useState({ email: "", name: "", phone: "", description: "" });
+  const [errors, setErrors] = useState({});
+  const timeSlots = ["08:00 AM", "08:45 AM", "09:30 AM", "10:15 AM", "11:00 AM"];
 
-  const timeSlots = ["08:00", "08:45", "09:30", "10:15", "11:00"];
+  useEffect(() => {
+    if (location.state?.selectedService) setSelectedService(location.state.selectedService);
+    if (location.state?.selectedWorker) setSelectedWorker(location.state.selectedWorker);
+  }, [location.state]);
 
   const validateForm = () => {
     let newErrors = {};
-    
-    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      newErrors.email = "Invalid email format";
-    }
-    
-    if (!formData.name.match(/^[A-Za-z ]+$/)) {
-      newErrors.name = "Name should only contain letters and spaces";
-    }
-    
-    if (!formData.phone.match(/^\d{10}$/)) {
-      newErrors.phone = "Phone number must be exactly 10 digits";
-    }
-    
-    if (formData.description.length > 200) {
-      newErrors.description = "Description should not exceed 200 characters";
-    }
-    
-    if (!selectedDate) {
-      newErrors.date = "Please select a valid date";
-    }
-    
-    if (!selectedTime) {
-      newErrors.time = "Please select a time slot";
-    }
-    
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) newErrors.email = "Invalid email format";
+    if (!formData.name.match(/^[A-Za-z ]+$/)) newErrors.name = "Name should only contain letters and spaces";
+    if (!formData.phone.match(/^\d{10}$/)) newErrors.phone = "Phone number must be exactly 10 digits";
+    if (formData.description.length > 200) newErrors.description = "Description should not exceed 200 characters";
+    if (!date) newErrors.date = "Please select a valid date";
+    if (!time) newErrors.time = "Please select a time slot";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-// =========================================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      const bookingData = {
-        selectedDate,
-        selectedTime,
-        formData,
-        selectedLocation,
-        selectedService,
-        selectedWorker,
-      };
-  
-      try {
-        const response = await fetch("/api/bookings", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(bookingData),
-        });
-  
-        if (response.ok) {
-          alert("Booking Submitted! The worker has been notified.");
-        } else {
-          alert("Failed to submit booking. Please try again.");
-        }
-      } catch (error) {
-        console.error("Error submitting booking:", error);
-        alert("An error occurred. Please try again later.");
-      }
+    if (!selectedWorker) return alert("Please select a worker!");
+    if (!validateForm()) return;
+
+    const bookingData = {
+      userId: 1,
+      workerId: selectedWorker.id || selectedWorker,
+      time: new Date(date).toISOString(),
+      location: selectedLocation,
+      jobDetails: formData.description,
+      status: "Pending",
+      price: 500,
+    };
+
+    try {
+      const response = await fetch("https://localhost:44300/api/Booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit booking");
+      alert("Booking submitted successfully!");
+      navigate("/success");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred.");
     }
   };
-// =====================================  
 
-return (
-  <div className="booking-page" style={{ paddingTop: "100px" }}> {/* Added inline padding */}
-    <br></br><h2>Book an Appointment</h2><br></br><br></br>
-    <div className="form-section">
-      <div className="dropdowns">
-        <label>
-          Location
-          <select value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
-            <option value="Pune">Pune</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Nashik">Nashik</option>
-            <option value="Nagpur">Nagpur</option>
-          </select>
-        </label>
-        <label>
-          Service
-          <select value={selectedService} onChange={(e) => setSelectedService(e.target.value)}>
-            <option value="Cleaning">Cleaning</option>
-            <option value="Cooking">Cooking</option>
-            <option value="Gardening">Gardening</option>
-            <option value="Babysitting">Babysitting</option>
-            <option value="Patient Care">Patient Care</option>
-            <option value="Pet Care">Pet Care</option>
-          </select>
-        </label>
-        <label>
-          Worker
-          <select value={selectedWorker} onChange={(e) => setSelectedWorker(e.target.value)}>
-            <option value="Helper 1">Helper 1</option>
-            <option value="Helper 2">Helper 2</option>
-          </select>
-        </label>
-      </div>
-      <div className="calendar-section">
-        <label>
-          Select Date
-          <DatePicker selected={selectedDate} onChange={(date) => setSelectedDate(date)} inline />
-        </label>
-      </div>
-      <div className="time-slots">
-        <h4>Select Time</h4>
-        <div className="slots">
-          {timeSlots.map((time) => (
-            <button key={time} className={selectedTime === time ? "selected" : ""} onClick={() => setSelectedTime(time)}>
-              {time}
-            </button>
-          ))}
+  return (
+    <div className="booking-page" style={{ paddingTop: "100px" }}>
+      <h2>Book an Appointment</h2>
+      <div className="form-section">
+        <div className="dropdowns">
+          <label>
+            Location
+            <select value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
+              <option value="Pune">Pune</option>
+            </select>
+          </label>
+          <label>
+            Service
+            <select value={selectedService} onChange={(e) => setSelectedService(e.target.value)}>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Cooking">Cooking</option>
+              <option value="Gardening">Gardening</option>
+              <option value="Babysitting">Babysitting</option>
+              <option value="Patient Care">Patient Care</option>
+              <option value="Pet Care">Pet Care</option>
+            </select>
+          </label>
+          <label>
+            Worker
+            <input type="text" value={selectedWorker} readOnly />
+          </label>
         </div>
-        {errors.time && <p className="error">{errors.time}</p>}
-      </div>
-    </div>
-    <form className="personal-info" onSubmit={handleSubmit}>
-    <br></br><h3>Personal Information</h3><br></br>
-      <label>
-        Email
-        <input type="email" name="email" value={formData.email} onChange={handleFormChange} required />
-        {errors.email && <p className="error">{errors.email}</p>}
-      </label>
-      <label>
-        Name
-        <input type="text" name="name" value={formData.name} onChange={handleFormChange} required />
-        {errors.name && <p className="error">{errors.name}</p>}
-      </label>
-      <label>
-        Phone
-        <input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} required />
-        {errors.phone && <p className="error">{errors.phone}</p>}
-      </label>
-      <label>
-        Description
-        <textarea name="description" value={formData.description} onChange={handleFormChange} />
-        {errors.description && <p className="error">{errors.description}</p>}
-      </label><br></br>
-      <button type="submit">Book Appointment</button>
-    </form><br></br>
-    <br></br>
-  </div>
-);
 
+        <div className="mb-4">
+          <label>Date</label>
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required min={new Date().toISOString().split("T")[0]} />
+        </div>
+
+        <div className="mb-4">
+          <label>Time</label>
+          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+        </div>
+      </div>
+
+      <form className="personal-info" onSubmit={handleSubmit}>
+        <h3>Personal Information</h3>
+        <label>Email<input type="email" name="email" value={formData.email} onChange={handleFormChange} required /></label>
+        {errors.email && <p className="error">{errors.email}</p>}
+        <label>Name<input type="text" name="name" value={formData.name} onChange={handleFormChange} required /></label>
+        {errors.name && <p className="error">{errors.name}</p>}
+        <label>Phone<input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} required /></label>
+        {errors.phone && <p className="error">{errors.phone}</p>}
+        <label>Description<textarea name="description" value={formData.description} onChange={handleFormChange} /></label>
+        {errors.description && <p className="error">{errors.description}</p>}
+        <button type="submit">Book Appointment</button>
+      </form>
+    </div>
+  );
 };
 
 export default BookingPage;
